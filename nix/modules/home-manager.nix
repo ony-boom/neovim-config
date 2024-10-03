@@ -34,9 +34,10 @@ in {
   # Mason replacement
   config = lib.mkIf config.programs.neovim.enable {
     home.packages = lsp ++ formatters ++ linters;
-    xdg.configFile."nvim" = {
+    xdg.configFile."nvim/init.lua".source = self + /init.lua;
+    xdg.configFile."nvim/lua" = {
+      source = self + /lua;
       recursive = true;
-      source = self + ./.;
     };
   };
 }
