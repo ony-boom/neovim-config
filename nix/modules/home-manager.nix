@@ -1,4 +1,9 @@
-{pkgs, ...}: let
+{self}: {
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   formatters = with pkgs; [
     stylua # lua
     alejandra # nix
@@ -27,5 +32,11 @@
   ];
 in {
   # Mason replacement
-  home.packages = lsp ++ formatters ++ linters;
+  config = lib.mkIf config.programs.neovim.enable {
+    home.packages = lsp ++ formatters ++ linters;
+    xdg.configFile."nvim" = {
+      recursive = true;
+      source = self + ./.;
+    };
+  };
 }
