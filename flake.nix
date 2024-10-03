@@ -6,10 +6,10 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = {flake-utils, ...}:
+  outputs = {self, flake-utils, ...}:
     flake-utils.lib.eachDefaultSystem (
       system: {
-        homeManagerModules = import ./nix/modules/home-manager.nix;
+        homeManagerModules = import ./nix/modules/home-manager.nix {inherit self};
       }
     );
 }
