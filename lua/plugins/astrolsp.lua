@@ -34,7 +34,8 @@ return {
     servers = {
       "ts_ls",
       "lua_ls",
-      "nil_ls"
+      "nil_ls",
+      "gopls",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
