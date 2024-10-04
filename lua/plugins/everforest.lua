@@ -14,10 +14,5 @@ return {
         },
       },
     }
-
-    require("neo-tree").setup {
-      highlight_tab = "WhiteSpace",
-      highlight_background = "None",
-    }
   end,
 }
