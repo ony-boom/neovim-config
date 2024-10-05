@@ -50,4 +50,9 @@ return {
       )
     end,
   },
+
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    config = function(_, opts) opts.sources = { "filesystem" } end,
+  },
 }
