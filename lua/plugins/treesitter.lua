@@ -7,5 +7,6 @@ return {
       "vim",
       "javascript",
     },
+    auto_install = true,
   },
 }
