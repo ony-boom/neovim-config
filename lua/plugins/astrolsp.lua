@@ -36,6 +36,7 @@ return {
       "lua_ls",
       "nil_ls",
       "gopls",
+      "svelte",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
