@@ -53,6 +53,11 @@ return {
           desc = "Go to references",
         },
 
+        ["gd"] = {
+          function() require("telescope.builtin").lsp_definitions() end,
+          desc = "Go to definition",
+        },
+
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
         -- ["<Leader>b"] = { desc = "Buffers" },
