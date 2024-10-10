@@ -95,6 +95,11 @@ return {
           desc = "Declaration of current symbol",
           cond = "textDocument/declaration",
         },
+        gd = {
+          function() require("telescope.builtin").lsp_definitions() end,
+          desc = "Go to definition",
+          cond = "textDocument/definition",
+        },
         ["<Leader>uY"] = {
           function() require("astrolsp.toggles").buffer_semantic_tokens() end,
           desc = "Toggle LSP semantic highlight (buffer)",
