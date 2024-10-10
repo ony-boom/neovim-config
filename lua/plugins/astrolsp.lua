@@ -38,11 +38,11 @@ return {
       "gopls",
       "svelte",
       "cssls",
+      "tailwindcss",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
-      -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
       cssls = {
         capabilities = {
           textDocument = {
