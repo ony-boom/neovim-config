@@ -53,6 +53,12 @@ return {
 
   {
     "nvim-neo-tree/neo-tree.nvim",
-    config = function(_, opts) opts.sources = { "filesystem" } end,
+    config = function(_, opts)
+      opts.sources = { "filesystem" }
+      opts.follow_current_file = {
+        enabled = true,
+        leav_dirs_open = false,
+      }
+    end,
   },
 }
