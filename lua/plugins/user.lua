@@ -53,13 +53,11 @@ return {
 
   {
     "nvim-neo-tree/neo-tree.nvim",
-    config = function()
-      require("neo-tree").setup {
-        sources = { { source = "filesystem" } },
-        follow_current_file = {
-          enable = true,
-          leave_dirs_open = false,
-        },
+    config = function(_, opts)
+      opts.sources = { "filesystem" }
+      opts.follow_current_file = {
+        enabled = true,
+        leav_dirs_open = false,
       }
     end,
   },
