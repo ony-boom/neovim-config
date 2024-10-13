@@ -50,8 +50,7 @@ return {
       )
     end,
   },
-
-  {
+  --[[ {
     "nvim-neo-tree/neo-tree.nvim",
     config = function(_, opts)
       opts.sources = { "filesystem" }
@@ -60,5 +59,5 @@ return {
         leav_dirs_open = false,
       }
     end,
-  },
+  }, ]]
 }
