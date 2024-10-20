@@ -7,6 +7,7 @@
   formatters = with pkgs; [
     stylua # lua
     alejandra # nix
+    shfmt # shell
 
     # web stuff
     prettierd
