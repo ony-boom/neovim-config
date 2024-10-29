@@ -22,7 +22,7 @@ return {
         genrator_opts = {
           command = "deno",
           args = { "fmt", "--quiet", "$FILENAME" },
-          to_stdin = true,
+          to_stdin = false,
         },
         filetypes = {
           "typescript",
