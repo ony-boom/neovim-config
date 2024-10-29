@@ -24,7 +24,7 @@ return {
         genrator_opts = {
           command = "deno",
           args = { "fmt", "--quiet", "$FILENAME" },
-          cwd = h.cache.by_bufnr(function(params) return u.root_pattern "deno.json"(params.bufname) end),
+          from_temp_file = true,
           to_temp_file = true,
         },
         filetypes = {
