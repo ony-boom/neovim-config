@@ -3,9 +3,15 @@
 return {
   {
     "nvimtools/none-ls.nvim",
+    config = function()
+      require("null-ls").setup {
+        handlers = {},
+      }
+    end,
     opts = function(_, opts)
       -- opts variable is the default configuration table for the setup function call
       local null_ls = require "null-ls"
+      local helpers = require "null-ls.helpers"
 
       -- Check supported formatters and linters
       -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/formatting
@@ -15,25 +21,36 @@ return {
       -- (If you wish to replace, use `opts.sources = {}` instead of the `list_insert_unique` function)
       --
 
-      local deno_fmt = {
+      local deno_fmt = helpers.make_builtin {
         name = "deno_fmt",
         method = null_ls.methods.FORMATTING,
         filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "json", "jsonc" },
         generator = null_ls.formatter {
           name = "deno_fmt",
           command = "deno",
-          args = { "fmt", "$FILENAME", "--stdin" },
-          to_stdin = true,
+          args = { "fmt", "$FILENAME" },
+        },
+        meta = {
+          url = "https://deno.com",
+          notes = {},
+          description = "Deno formatter",
         },
       }
+
       opts.sources = require("astrocore").list_insert_unique(opts.sources, {
         -- Set a formatter
         null_ls.builtins.formatting.shfmt,
         null_ls.builtins.formatting.gofmt,
         null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.prettierd,
+        null_ls.builtins.formatting.prettierd.with {
+          condition = function(utils)
+            return utils.root_has_file { "package.json", "prettier.config.js", ".prettierrc", "pretter.config.js" }
+          end,
+        },
         null_ls.builtins.formatting.alejandra,
-        deno_fmt,
+        deno_fmt.with {
+          condition = function(utils) return utils.root_has_file { "deno.json", "deno.jsonc" } end,
+        },
         -- null_ls.builtins.formatting.deno_fmt,
       })
     end,
