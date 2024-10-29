@@ -2,7 +2,6 @@
 ---@type LazySpec
 return {
   "nvimtools/none-ls.nvim",
-  enabled = false,
   opts = function(_, opts)
     -- opts variable is the default configuration table for the setup function call
     local null_ls = require "null-ls"
@@ -20,6 +19,7 @@ return {
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.formatting.prettierd,
       null_ls.builtins.formatting.alejandra,
+      null_ls.builtins.formatting.deno_fmt,
     })
 
     local mkHandler = function(type, client, conditionFn)
