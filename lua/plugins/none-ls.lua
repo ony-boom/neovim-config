@@ -22,7 +22,7 @@ return {
         factory = helpers.formatter_factory,
         genrator_opts = {
           command = "deno",
-          args = { "fmt", "--quiet" },
+          args = { "fmt", "--quiet", "$FILENAME" },
           to_stdin = true,
         },
         filetypes = {
