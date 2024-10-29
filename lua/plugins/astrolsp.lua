@@ -12,6 +12,7 @@ return {
     -- customize lsp formatting options
     formatting = {
       -- control auto formatting on save
+      debug = true, -- print debug information
       format_on_save = {
         enabled = false, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only

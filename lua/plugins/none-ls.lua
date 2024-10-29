@@ -3,11 +3,6 @@
 return {
   {
     "nvimtools/none-ls.nvim",
-    config = function()
-      require("null-ls").enable {
-        debug = true,
-      }
-    end,
     opts = function(_, opts)
       -- opts variable is the default configuration table for the setup function call
       local null_ls = require "null-ls"
