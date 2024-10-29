@@ -28,33 +28,13 @@ return {
       null_ls.builtins.formatting.shfmt,
       null_ls.builtins.formatting.gofmt,
       null_ls.builtins.formatting.stylua,
-      null_ls.builtins.formatting.prettierd,
+      null_ls.builtins.formatting.prettierd.with {
+        condition = function(utils) return utils.root_has_file "package.json" end,
+      },
       null_ls.builtins.formatting.alejandra,
-      deno_fmt,
-      -- null_ls.builtins.formatting.deno_fmt,
+      deno_fmt.with {
+        condition = function(utils) return utils.root_has_file "deno.json" or utils.root_has_file "deno.jsonc" end,
+      },
     })
-
-    local mkHandler = function(type, client, conditionFn)
-      null_ls.register(null_ls.builtins[type][client].with {
-        condition = conditionFn,
-      })
-    end
-
-    opts.handlers = {
-      prettierd = mkHandler("formatting", "prettierd", function(utils)
-        local prettierdConfigFiles = {
-          ".prettierrc",
-          ".prettierrc.js",
-          ".prettierrc.json",
-          "prettier.config.js",
-        }
-
-        for _, value in pairs(prettierdConfigFiles) do
-          if utils.root_has_file(value) then return true end
-        end
-
-        return utils.root_has_file "package.json"
-      end),
-    }
   end,
 }
