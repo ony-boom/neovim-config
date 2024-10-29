@@ -21,5 +21,28 @@ return {
       null_ls.builtins.formatting.prettierd,
       null_ls.builtins.formatting.alejandra,
     })
+
+    local mkHandler = function(type, client, conditionFn)
+      null_ls.register(null_ls.builtins[type][client].with {
+        condition = conditionFn,
+      })
+    end
+
+    opts.handlers = {
+      prettierd = mkHandler("formatting", "prettierd", function(utils)
+        local prettierdConfigFiles = {
+          ".prettierrc",
+          ".prettierrc.js",
+          ".prettierrc.json",
+          "prettier.config.js",
+        }
+
+        for _, value in pairs(prettierdConfigFiles) do
+          if utils.root_has_file(value) then return true end
+        end
+
+        return utils.root_has_file "package.json"
+      end),
+    }
   end,
 }
