@@ -16,19 +16,22 @@ return {
       -- Only insert new sources, do not replace the existing ones
       -- (If you wish to replace, use `opts.sources = {}` instead of the `list_insert_unique` function)
       --
+      local has_deno_config = function(utils) return utils.root_has_file { "deno.json", "deno.jsonc" } end
+
+      local has_prettier_config = function(utils)
+        return utils.root_has_file { "package.json", "prettier.config.js", ".prettierrc", "pretter.config.js" }
+      end
       opts.sources = require("astrocore").list_insert_unique(opts.sources, {
         -- Set a formatter
         null_ls.builtins.formatting.shfmt,
         null_ls.builtins.formatting.gofmt,
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.prettierd.with {
-          condition = function(utils)
-            return utils.root_has_file { "package.json", "prettier.config.js", ".prettierrc", "pretter.config.js" }
-          end,
+          condition = function(utils) return not has_deno_config(utils) end,
         },
         null_ls.builtins.formatting.alejandra,
         deno_fmt.with {
-          condition = function(utils) return utils.root_has_file { "deno.json", "deno.jsonc" } end,
+          condition = function(utils) return not has_prettier_config(utils) end,
         },
         -- null_ls.builtins.formatting.deno_fmt,
       })
