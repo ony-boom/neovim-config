@@ -26,10 +26,12 @@ return {
           description = "Deno formatter",
         },
         method = FORMATTING,
+        to_stdin = false,
+        to_temp_file = true,
         genrator_opts = {
           command = "deno",
-          args = { "fmt", "-" },
-          to_stdin = true,
+          args = { "fmt", "$FILENAME" },
+          to_stdin = false,
         },
         filetypes = {
           "typescript",
