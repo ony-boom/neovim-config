@@ -6,7 +6,8 @@ return {
     opts = function(_, opts)
       -- opts variable is the default configuration table for the setup function call
       local null_ls = require "null-ls"
-      local helpers = require "null-ls.helpers"
+      local h = require "null-ls.helpers"
+      local u = require "null-ls.utils"
 
       -- Check supported formatters and linters
       -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/formatting
@@ -16,13 +17,14 @@ return {
       -- (If you wish to replace, use `opts.sources = {}` instead of the `list_insert_unique` function)
       --
 
-      local deno_fmt = helpers.make_builtin {
+      local deno_fmt = h.make_builtin {
         name = "deno_fmt",
         method = null_ls.methods.FORMATTING,
-        factory = helpers.formatter_factory,
+        factory = h.formatter_factory,
         genrator_opts = {
           command = "deno",
           args = { "fmt", "--quiet", "$FILENAME" },
+          cwd = h.cache.by_bufnr(function(params) return u.root_pattern "deno.json"(params.bufname) end),
           to_stdin = true,
         },
         filetypes = {
