@@ -27,7 +27,16 @@ return {
           args = { "fmt", "--quiet", "$FILENAME" },
           to_stdin = true,
         },
-        filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "json", "jsonc" },
+        filetypes = {
+          "typescript",
+          "typescriptreact",
+          "javascript",
+          "javascriptreact",
+          "json",
+          "jsonc",
+          "html",
+          "css"
+        },
         meta = {
           url = "https://deno.com",
           notes = {},
