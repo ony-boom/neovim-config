@@ -1,9 +1,3 @@
-local mkHandler = function(none_ls_item, conditionFn)
-  local null_ls = require "null-ls"
-  null_ls.register(none_ls_item.with {
-    condition = conditionFn,
-  })
-end
 -- Customize None-ls sources
 ---@type LazySpec
 return {
@@ -22,6 +16,7 @@ return {
       --
 
       local deno_fmt = {
+        name = "deno_fmt",
         method = null_ls.methods.FORMATTING,
         filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "json", "jsonc" },
         generator = null_ls.formatter {
@@ -42,26 +37,5 @@ return {
         -- null_ls.builtins.formatting.deno_fmt,
       })
     end,
-  },
-  {
-    "nvimtools/none-ls.nvim",
-    opts = {
-      handlers = {
-        prettierd = mkHandler(require("null-ls").builtins.formatting.prettierd, function(utils)
-          local prettierdConfigFiles = {
-            ".prettierrc",
-            ".prettierrc.js",
-            ".prettierrc.json",
-            "prettier.config.js",
-          }
-
-          for _, value in pairs(prettierdConfigFiles) do
-            if utils.root_has_file(value) then return true end
-          end
-
-          return utils.root_has_file "package.json"
-        end),
-      },
-    },
   },
 }
