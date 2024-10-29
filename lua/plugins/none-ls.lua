@@ -22,14 +22,12 @@ return {
       --
 
       local deno_fmt = helpers.make_builtin {
-        name = "deno_fmt",
-        method = null_ls.methods.FORMATTING,
-        filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "json", "jsonc" },
-        generator = null_ls.formatter {
-          name = "deno_fmt",
+        factory = helpers.formatter_factory {
           command = "deno",
-          args = { "fmt", "$FILENAME" },
+          args = { "fmt", "--quiet", "$FILENAME" },
+          to_stdin = true,
         },
+        filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "json", "jsonc" },
         meta = {
           url = "https://deno.com",
           notes = {},
