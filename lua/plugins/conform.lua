@@ -46,8 +46,7 @@ return {
       n = {
         ["<Leader>lf"] = {
           "<cmd>lua require('conform').format()<CR>",
-          desc = "Format buffer",
-          noremap = true,
+          desc = "Format buffer ✨",
         },
       },
     }
