@@ -22,13 +22,20 @@ return {
       nix = { "alejandra" },
     }
 
-    local js_ts = { "javascript", "typescript" }
-    local web_ft = { "html", "css", "scss", "json", "yaml", "markdown" }
+    local web_ft = {
+      "html",
+      "css",
+      "scss",
+      "json",
+      "yaml",
+      "markdown",
+      "javascript",
+      "typescript",
+    }
 
-    astrocore.extend_tbl(formatters_by_ft, mk_formatters_by_ft(web_ft, { "prettierd" }))
     astrocore.extend_tbl(
       formatters_by_ft,
-      mk_formatters_by_ft(js_ts, { "deno_fmt", "prettierd", stop_after_first = true })
+      mk_formatters_by_ft(web_ft, { "deno_fmt", "prettierd", stop_after_first = true })
     )
 
     require("conform").setup {
