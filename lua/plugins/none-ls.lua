@@ -49,15 +49,9 @@ return {
         null_ls.builtins.formatting.shfmt,
         null_ls.builtins.formatting.gofmt,
         null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.prettierd.with {
-          condition = function(utils)
-            return utils.root_has_file { "package.json", "prettier.config.js", ".prettierrc", "pretter.config.js" }
-          end,
-        },
+        null_ls.builtins.formatting.prettierd,
         null_ls.builtins.formatting.alejandra,
-        deno_fmt.with {
-          condition = function(utils) return utils.root_has_file { "deno.json", "deno.jsonc" } end,
-        },
+        deno_fmt.with,
         -- null_ls.builtins.formatting.deno_fmt,
       })
     end,
