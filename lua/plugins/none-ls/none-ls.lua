@@ -1,3 +1,5 @@
+local deno_fmt = require "plugins.none-ls.deno"
+
 -- Customize None-ls sources
 ---@type LazySpec
 return {
@@ -6,10 +8,6 @@ return {
     opts = function(_, opts)
       -- opts variable is the default configuration table for the setup function call
       local null_ls = require "null-ls"
-      local h = require "null-ls.helpers"
-      local methods = require "null-ls.methods"
-
-      local FORMATTING = methods.internal.FORMATTING
 
       -- Check supported formatters and linters
       -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/formatting
@@ -18,40 +16,6 @@ return {
       -- Only insert new sources, do not replace the existing ones
       -- (If you wish to replace, use `opts.sources = {}` instead of the `list_insert_unique` function)
       --
-      local extensions = {
-        javascript = "js",
-        javascriptreact = "jsx",
-        json = "json",
-        jsonc = "jsonc",
-        markdown = "md",
-        typescript = "ts",
-        typescriptreact = "tsx",
-      }
-
-      local deno_fmt = h.make_builtin {
-        name = "deno_fmt",
-        meta = {
-          url = "https://deno.com",
-          description = "Deno formatter",
-        },
-        method = FORMATTING,
-        filetypes = {
-          "javascript",
-          "javascriptreact",
-          "json",
-          "jsonc",
-          "markdown",
-          "typescript",
-          "typescriptreact",
-        },
-        generator_opts = {
-          command = "deno",
-          args = function(params) return { "fmt", "-", "--ext", extensions[params.ft] } end,
-          to_stdin = true,
-        },
-        factory = h.formatter_factory,
-      }
-
       opts.sources = require("astrocore").list_insert_unique(opts.sources, {
         -- Set a formatter
         null_ls.builtins.formatting.shfmt,
