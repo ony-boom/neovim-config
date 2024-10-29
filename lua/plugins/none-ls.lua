@@ -18,6 +18,15 @@ return {
       -- Only insert new sources, do not replace the existing ones
       -- (If you wish to replace, use `opts.sources = {}` instead of the `list_insert_unique` function)
       --
+      local extensions = {
+        javascript = "js",
+        javascriptreact = "jsx",
+        json = "json",
+        jsonc = "jsonc",
+        markdown = "md",
+        typescript = "ts",
+        typescriptreact = "tsx",
+      }
 
       local deno_fmt = h.make_builtin {
         name = "deno_fmt",
@@ -26,22 +35,19 @@ return {
           description = "Deno formatter",
         },
         method = FORMATTING,
-        to_stdin = false,
-        to_temp_file = true,
-        genrator_opts = {
-          command = "deno",
-          args = { "fmt", "$FILENAME" },
-          to_stdin = false,
-        },
         filetypes = {
-          "typescript",
-          "typescriptreact",
           "javascript",
           "javascriptreact",
           "json",
           "jsonc",
-          "html",
-          "css",
+          "markdown",
+          "typescript",
+          "typescriptreact",
+        },
+        generator_opts = {
+          command = "deno",
+          args = function(params) return { "fmt", "-", "--ext", extensions[params.ft] } end,
+          to_stdin = true,
         },
         factory = h.formatter_factory,
       }
