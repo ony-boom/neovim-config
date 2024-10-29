@@ -1,6 +1,6 @@
-local mkHandler = function(type, client, conditionFn)
+local mkHandler = function(none_ls_item, conditionFn)
   local null_ls = require "null-ls"
-  null_ls.register(null_ls.builtins[type][client].with {
+  null_ls.register(none_ls_item.with {
     condition = conditionFn,
   })
 end
@@ -47,7 +47,7 @@ return {
     "nvimtools/none-ls.nvim",
     opts = {
       handlers = {
-        prettierd = mkHandler("formatting", "prettierd", function(utils)
+        prettierd = mkHandler(require("null-ls").builtins.formatting.prettierd, function(utils)
           local prettierdConfigFiles = {
             ".prettierrc",
             ".prettierrc.js",
@@ -62,11 +62,6 @@ return {
           return utils.root_has_file "package.json"
         end),
       },
-      deno_fmt = mkHandler(
-        "formatting",
-        "deno_fmt",
-        function(utils) return utils.root_has_file "deno.json" or utils.root_has_file "deno.jsonc" end
-      ),
     },
   },
 }
