@@ -25,7 +25,7 @@ return {
           command = "deno",
           args = { "fmt", "--quiet", "$FILENAME" },
           cwd = h.cache.by_bufnr(function(params) return u.root_pattern "deno.json"(params.bufname) end),
-          to_stdin = true,
+          to_temp_file = true,
         },
         filetypes = {
           "typescript",
