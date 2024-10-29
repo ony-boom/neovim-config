@@ -21,12 +21,15 @@ return {
 
       local deno_fmt = h.make_builtin {
         name = "deno_fmt",
+        meta = {
+          url = "https://deno.com",
+          description = "Deno formatter",
+        },
         method = FORMATTING,
-        factory = h.formatter_factory,
+        to_stdin = true,
         genrator_opts = {
           command = "deno",
           args = { "fmt", "--quiet", "$FILENAME" },
-          to_stdin = true,
         },
         filetypes = {
           "typescript",
@@ -38,10 +41,7 @@ return {
           "html",
           "css",
         },
-        meta = {
-          url = "https://deno.com",
-          description = "Deno formatter",
-        },
+        factory = h.formatter_factory,
       }
 
       opts.sources = require("astrocore").list_insert_unique(opts.sources, {
