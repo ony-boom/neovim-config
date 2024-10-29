@@ -52,10 +52,6 @@ return {
           function() require("telescope.builtin").lsp_references() end,
           desc = "Go to references",
         },
-        ["<Leader>lf"] = {
-          function() require("conform").format() end,
-          desc = "Format buffer",
-        },
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
         -- ["<Leader>b"] = { desc = "Buffers" },

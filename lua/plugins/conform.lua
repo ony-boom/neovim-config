@@ -41,5 +41,13 @@ return {
     require("conform").setup {
       formatters_by_ft = formatters_by_ft,
     }
+
+    require("astrocore").set_mappings(
+      {
+        n = {
+          ["<Leader>lf"] = { "<cmd>lua require('conform').format()<CR>", desc = "Format buffer" },
+        },
+      }
+    )
   end,
 }
