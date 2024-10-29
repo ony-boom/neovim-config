@@ -7,7 +7,9 @@ return {
       -- opts variable is the default configuration table for the setup function call
       local null_ls = require "null-ls"
       local h = require "null-ls.helpers"
-      local u = require "null-ls.utils"
+      local methods = require "null-ls.methods"
+
+      local FORMATTING = methods.internal.FORMATTING
 
       -- Check supported formatters and linters
       -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/formatting
@@ -19,13 +21,12 @@ return {
 
       local deno_fmt = h.make_builtin {
         name = "deno_fmt",
-        method = null_ls.methods.FORMATTING,
+        method = FORMATTING,
         factory = h.formatter_factory,
         genrator_opts = {
           command = "deno",
           args = { "fmt", "--quiet", "$FILENAME" },
-          from_temp_file = true,
-          to_temp_file = true,
+          to_stdin = true,
         },
         filetypes = {
           "typescript",
