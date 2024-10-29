@@ -17,7 +17,9 @@ return {
       --
 
       local deno_fmt = helpers.make_builtin {
-        factory = helpers.formatter_factory {
+        method = null_ls.methods.FORMATTING,
+        factory = helpers.formatter_factory,
+        genrator_opts = {
           command = "deno",
           args = { "fmt", "--quiet", "$FILENAME" },
           to_stdin = true,
