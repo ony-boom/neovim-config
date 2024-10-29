@@ -12,6 +12,17 @@ return {
 
     -- Only insert new sources, do not replace the existing ones
     -- (If you wish to replace, use `opts.sources = {}` instead of the `list_insert_unique` function)
+    --
+
+    local deno_fmt = {
+      method = null_ls.methods.FORMATTING,
+      filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "json", "jsonc" },
+      generator = null_ls.formatter {
+        command = "deno",
+        args = { "fmt", "--stdin" },
+        to_stdin = true,
+      },
+    }
     opts.sources = require("astrocore").list_insert_unique(opts.sources, {
       -- Set a formatter
       null_ls.builtins.formatting.shfmt,
@@ -19,7 +30,8 @@ return {
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.formatting.prettierd,
       null_ls.builtins.formatting.alejandra,
-      null_ls.builtins.formatting.deno_fmt,
+      deno_fmt,
+      -- null_ls.builtins.formatting.deno_fmt,
     })
 
     local mkHandler = function(type, client, conditionFn)
