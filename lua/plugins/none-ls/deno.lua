@@ -13,6 +13,14 @@ local extensions = {
   typescriptreact = "tsx",
 }
 
+local ft = {}
+
+local index = 1
+for _, value in pairs(extensions) do
+  table.insert(ft, index, value)
+  index = index + 1
+end
+
 return h.make_builtin {
   name = "deno_fmt",
   meta = {
@@ -20,15 +28,7 @@ return h.make_builtin {
     description = "Use [Deno](https://deno.land/) to format TypeScript, JavaScript/JSON and markdown.",
   },
   method = FORMATTING,
-  filetypes = {
-    "javascript",
-    "javascriptreact",
-    "json",
-    "jsonc",
-    "markdown",
-    "typescript",
-    "typescriptreact",
-  },
+  filetypes = ft,
   generator_opts = {
     command = "deno",
     args = function(params) return { "fmt", "-", "--ext", extensions[params.ft] } end,
