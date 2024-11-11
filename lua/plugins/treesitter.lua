@@ -4,6 +4,7 @@ return {
   dependencies = {
     { "nushell/tree-sitter-nu", build = ":TSUpdate nu" },
   },
+  build = ":TSUpdate",
   opts = {
     ensure_installed = {
       "lua",
