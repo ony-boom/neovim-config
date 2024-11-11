@@ -40,6 +40,7 @@ return {
       "svelte",
       "cssls",
       "denols",
+      "nushell",
       "tailwindcss",
       "emmet_language_server",
     },
