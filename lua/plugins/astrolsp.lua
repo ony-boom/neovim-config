@@ -43,6 +43,7 @@ return {
       "nushell",
       "tailwindcss",
       "emmet_language_server",
+      "rust_analyzer",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
