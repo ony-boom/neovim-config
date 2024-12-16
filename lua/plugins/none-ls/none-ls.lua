@@ -33,6 +33,7 @@ return {
         deno_fmt.with {
           condition = function(utils) return not has_prettier_config(utils) end,
         },
+        null_ls.builtins.formatting.elm_format,
         -- null_ls.builtins.formatting.deno_fmt,
       })
     end,
