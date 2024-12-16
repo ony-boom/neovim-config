@@ -23,6 +23,8 @@
     nil # nix
     lua-language-server # lua
 
+    elmPackages.elm-language-server
+
     emmet-language-server
     nodePackages.typescript
     tailwindcss-language-server

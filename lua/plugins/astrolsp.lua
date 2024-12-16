@@ -39,11 +39,12 @@ return {
       "gopls",
       "svelte",
       "cssls",
+      "elmls",
       "denols",
       "nushell",
       "tailwindcss",
-      "emmet_language_server",
       "rust_analyzer",
+      "emmet_language_server",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
