@@ -55,8 +55,10 @@ return {
         },
         ["<Leader>pc"] = {
           function()
-            local path = vim.fn.expand "%"
+            local path = vim.fn.expand "%:p"
+
             vim.fn.setreg("+", path)
+            vim.notify(path, vim.log.levels.INFO, { title = "Copied path to clipboard" })
           end,
           desc = "Copy path to clipboard",
         },
