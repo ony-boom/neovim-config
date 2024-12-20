@@ -53,6 +53,13 @@ return {
           function() require("telescope.builtin").lsp_references() end,
           desc = "Go to references",
         },
+        ["<Leader>pc"] = {
+          function()
+            local path = vim.fn.expand "%"
+            vim.fn.setreg("+", path)
+          end,
+          desc = "Copy path to clipboard",
+        },
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
         -- ["<Leader>b"] = { desc = "Buffers" },
