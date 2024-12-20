@@ -27,11 +27,11 @@
 
     emmet-language-server
     nodePackages.typescript
-    tailwindcss-language-server
     vscode-langservers-extracted
     nodePackages.svelte-language-server
     nodePackages.typescript-language-server
     nodePackages."@prisma/language-server"
+    nodePackages."@tailwindcss/language-server"
   ];
 in {
   # Mason replacement
