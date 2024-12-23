@@ -45,6 +45,7 @@ return {
       "tailwindcss",
       "rust_analyzer",
       "emmet_language_server",
+      "java_language_server",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
