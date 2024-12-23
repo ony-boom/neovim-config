@@ -23,7 +23,7 @@
     nil # nix
     lua-language-server # lua
 
-    java-language-server
+    jdt-language-server
 
     elmPackages.elm-language-server
 
