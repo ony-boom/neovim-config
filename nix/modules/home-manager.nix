@@ -34,6 +34,7 @@
     nodePackages.svelte-language-server
     nodePackages.typescript-language-server
     nodePackages."@prisma/language-server"
+    nodePackages."@astrojs/language-server"
   ];
 in {
   # Mason replacement

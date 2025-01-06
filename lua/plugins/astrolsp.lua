@@ -34,6 +34,7 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       "ts_ls",
+      "astro",
       "lua_ls",
       "nil_ls",
       "gopls",
