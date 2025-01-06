@@ -50,14 +50,22 @@ return {
       )
     end,
   },
-  --[[ {
+  {
     "nvim-neo-tree/neo-tree.nvim",
-    config = function(_, opts)
-      opts.sources = { "filesystem" }
-      opts.follow_current_file = {
-        enabled = true,
-        leav_dirs_open = false,
-      }
+    enabled = false,
+  },
+  {
+    "stevearc/oil.nvim",
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+
+    config = function()
+      require("oil").setup()
+
+      vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>", { noremap = true, silent = true })
     end,
-  }, ]]
+  },
 }
