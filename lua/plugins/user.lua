@@ -50,11 +50,7 @@ return {
       )
     end,
   },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    enabled = false,
-  },
-  {
+  --[[ {
     "stevearc/oil.nvim",
     ---@module 'oil'
     ---@type oil.SetupOpts
@@ -67,5 +63,5 @@ return {
 
       vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>", { noremap = true, silent = true })
     end,
-  },
+  }, ]]
 }
