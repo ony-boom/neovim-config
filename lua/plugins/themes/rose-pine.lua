@@ -6,6 +6,14 @@ return {
     require("rose-pine").setup {
       variant = "main",
       dark_variant = "main",
+
+      styles = {
+        transparency = true,
+      },
+
+      highlight_groups = {
+        NotifyBackground = { bg = "base", fg = "text" },
+      },
     }
   end,
 }
