@@ -26,7 +26,7 @@ return {
         null_ls.builtins.formatting.shfmt,
         null_ls.builtins.formatting.gofmt,
         null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.prettierd.with {
+        null_ls.builtins.formatting.prettier.with {
           condition = function(utils) return not has_deno_config(utils) and has_prettier_config(utils) end,
         },
         null_ls.builtins.formatting.alejandra,
