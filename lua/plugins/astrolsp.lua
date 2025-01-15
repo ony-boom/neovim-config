@@ -41,6 +41,7 @@ return {
       "svelte",
       "cssls",
       "jdtls",
+      "jsonls",
       "elmls",
       "denols",
       "nushell",
