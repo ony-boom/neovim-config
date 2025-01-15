@@ -33,6 +33,7 @@
     vscode-langservers-extracted
     nodePackages.svelte-language-server
     nodePackages.typescript-language-server
+    nodePackages.vscode-langservers-extracted
     nodePackages."@prisma/language-server"
     nodePackages."@astrojs/language-server"
   ];
