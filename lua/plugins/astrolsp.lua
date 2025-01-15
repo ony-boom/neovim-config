@@ -70,6 +70,17 @@ return {
       denols = {
         root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
       },
+      jsonls = {
+        capabilities = {
+          textDocument = {
+            completion = {
+              completionItem = {
+                snippetSupport = true,
+              },
+            },
+          },
+        },
+      },
     },
     -- customize how language servers are attached
     handlers = {
