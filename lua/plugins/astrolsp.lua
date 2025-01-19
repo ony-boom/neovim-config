@@ -46,6 +46,7 @@ return {
       "denols",
       "nushell",
       "tailwindcss",
+      "prismals",
       "rust_analyzer",
       "emmet_language_server",
     },
