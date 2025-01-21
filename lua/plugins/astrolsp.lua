@@ -33,6 +33,8 @@ return {
     },
     -- enable servers that you already have installed without mason
     servers = {
+      "html",
+      "jsonls",
       "ts_ls",
       "astro",
       "lua_ls",
@@ -53,6 +55,29 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
+      jsonls = {
+        capabilities = {
+          textDocument = {
+            completion = {
+              completionItem = {
+                snippetSupport = true,
+              },
+            },
+          },
+        },
+      },
+
+      html = {
+        capabilities = {
+          textDocument = {
+            completion = {
+              completionItem = {
+                snippetSupport = true,
+              },
+            },
+          },
+        },
+      },
       cssls = {
         capabilities = {
           textDocument = {
