@@ -14,10 +14,6 @@
     nodePackages.prettier
   ];
 
-  linters = with pkgs; [
-    nodePackages.eslint
-  ];
-
   lsp = with pkgs; [
     gopls
     nil # nix
@@ -43,7 +39,6 @@ in {
     home.packages =
       lsp
       ++ formatters
-      ++ linters
       ++ [
         pkgs.tree-sitter
       ];
