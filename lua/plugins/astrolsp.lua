@@ -35,7 +35,6 @@ return {
     servers = {
       "html",
       "jsonls",
-      "phpactor",
       "ts_ls",
       "astro",
       "lua_ls",
@@ -43,7 +42,6 @@ return {
       "gopls",
       "svelte",
       "cssls",
-      "jdtls",
       "jsonls",
       "elmls",
       "denols",
