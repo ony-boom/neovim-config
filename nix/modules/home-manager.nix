@@ -18,6 +18,7 @@
     gopls
     nil # nix
     lua-language-server # lua
+    phpactor
 
     jdt-language-server
 
