@@ -39,13 +39,10 @@ return {
       "astro",
       "lua_ls",
       "nil_ls",
-      "gopls",
       "svelte",
       "cssls",
       "jsonls",
-      "elmls",
       "denols",
-      "nushell",
       "tailwindcss",
       "prismals",
       "rust_analyzer",
@@ -54,18 +51,6 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
-      jsonls = {
-        capabilities = {
-          textDocument = {
-            completion = {
-              completionItem = {
-                snippetSupport = true,
-              },
-            },
-          },
-        },
-      },
-
       html = {
         capabilities = {
           textDocument = {
