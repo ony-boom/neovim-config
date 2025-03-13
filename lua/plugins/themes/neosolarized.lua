@@ -61,6 +61,13 @@ return {
       NeoSolarized.setup {
         transparent = true,
         terminal_colors = true,
+
+        on_highlights = function(hl, c)
+          hl.NotifyBackground = {
+            bg = c.bg0,
+            fg = c.fg0,
+          }
+        end,
       }
     end,
   },
