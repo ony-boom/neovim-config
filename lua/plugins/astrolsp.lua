@@ -44,7 +44,6 @@ return {
       "jsonls",
       "denols",
       "tailwindcss",
-      "prismals",
       "rust_analyzer",
       "emmet_language_server",
     },
