@@ -3,7 +3,6 @@ return {
   "AstroNvim/astroui",
   ---@type AstroUIOpts
   opts = {
-    background = "light", -- or "light"
     -- change colorscheme
     colorscheme = "gruvbox-material",
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
