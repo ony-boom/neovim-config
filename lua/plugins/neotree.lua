@@ -1,6 +1,4 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  opts = {
-    sources = { "filesystem" },
-  },
+  opts = function(_, opts) opts.sources = { "filesystem" } end,
 }
