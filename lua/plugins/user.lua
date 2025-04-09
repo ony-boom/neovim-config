@@ -48,5 +48,4 @@ return {
       )
     end,
   },
-  { "b0o/schemastore.nvim", name = "schemastore", priority = 1000 },
 }
