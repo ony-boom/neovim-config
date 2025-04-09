@@ -21,12 +21,12 @@
 
     elmPackages.elm-language-server
 
+    typescript
     emmet-language-server
-    nodePackages.typescript
+    typescript-language-server
     tailwindcss-language-server
     vscode-langservers-extracted
     nodePackages.svelte-language-server
-    nodePackages.typescript-language-server
     nodePackages.vscode-langservers-extracted
     nodePackages."@astrojs/language-server"
   ];

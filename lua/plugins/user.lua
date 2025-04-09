@@ -5,8 +5,6 @@ return {
     event = "BufRead",
     config = function() require("lsp_signature").setup() end,
   },
-
-  -- customize alpha options
   {
     "goolord/alpha-nvim",
     opts = function(_, opts)
@@ -50,18 +48,5 @@ return {
       )
     end,
   },
-  --[[ {
-    "stevearc/oil.nvim",
-    ---@module 'oil'
-    ---@type oil.SetupOpts
-    opts = {},
-    -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
-
-    config = function()
-      require("oil").setup()
-
-      vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>", { noremap = true, silent = true })
-    end,
-  }, ]]
+  { "b0o/schemastore.nvim" },
 }

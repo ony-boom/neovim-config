@@ -1,9 +1,20 @@
+local lsp_snipets_capabilities = {
+  textDocument = {
+    completion = {
+      completionItem = {
+        snippetSupport = true,
+      },
+    },
+  },
+}
+
+local root_pattern = require("lspconfig.util").root_pattern
+
 ---@type LazySpec
 return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
-    -- Configuration table of features provided by AstroLSP
     features = {
       codelens = true, -- enable/disable codelens refresh on start
       inlay_hints = false, -- enable/disable inlay hints on start
@@ -50,45 +61,23 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
-      html = {
-        capabilities = {
-          textDocument = {
-            completion = {
-              completionItem = {
-                snippetSupport = true,
-              },
-            },
+      html = { capabilities = lsp_snipets_capabilities },
+      cssls = { capabilities = lsp_snipets_capabilities },
+      jsonls = {
+        capabilities = lsp_snipets_capabilities,
+        settings = {
+          json = {
+            schemas = require("schemastore").json.schemas(),
           },
         },
       },
-      cssls = {
-        capabilities = {
-          textDocument = {
-            completion = {
-              completionItem = {
-                snippetSupport = true,
-              },
-            },
-          },
-        },
-      },
+
       ts_ls = {
         single_file_support = false,
-        root_dir = require("lspconfig.util").root_pattern("package.json", "tsconfig.json"),
+        root_dir = root_pattern("package.json", "tsconfig.json"),
       },
       denols = {
-        root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
-      },
-      jsonls = {
-        capabilities = {
-          textDocument = {
-            completion = {
-              completionItem = {
-                snippetSupport = true,
-              },
-            },
-          },
-        },
+        root_dir = root_pattern("deno.json", "deno.jsonc"),
       },
     },
     -- customize how language servers are attached
