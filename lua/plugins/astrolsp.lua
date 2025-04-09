@@ -12,7 +12,7 @@ local root_pattern = require("lspconfig.util").root_pattern
 
 ---@type LazySpec
 return {
-  { "b0o/schemastore.nvim" },
+  { "b0o/schemastore.nvim", lazy = true },
   {
     "AstroNvim/astrolsp",
     ---@type AstroLSPOpts
@@ -66,10 +66,13 @@ return {
         html = { capabilities = lsp_snipets_capabilities },
         cssls = { capabilities = lsp_snipets_capabilities },
         jsonls = {
+          on_new_config = function(new_config)
+            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+            vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+          end,
           capabilities = lsp_snipets_capabilities,
           settings = {
             json = {
-              schemas = require("schemastore").json.schemas(),
               validate = { enable = true },
             },
           },
