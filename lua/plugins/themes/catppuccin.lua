@@ -9,8 +9,14 @@ return {
         light = "latte",
         dark = "mocha",
       },
-      term_colors = true,
+
+      -- term_colors = true,
       transparent_background = true,
+
+      integrations = {
+        notify = true,
+        which_key = true,
+      },
     }
   end,
 }
