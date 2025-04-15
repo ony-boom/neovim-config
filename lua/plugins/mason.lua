@@ -1,18 +1,17 @@
---- I disable all mason plugins because I am using nix to manage my LSP servers
-
 ---@type LazySpec
 return {
-  -- use mason-lspconfig to configure LSP installations
   {
-    "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    -- overrides `require("mason-tool-installer").setup(...)`
     enabled = false,
-  },
-  {
-    "jay-babu/mason-null-ls.nvim",
-    enabled = false,
-  },
-  {
-    "jay-babu/mason-nvim-dap.nvim",
-    enabled = false,
+    opts = {
+      -- Make sure to use the names found in `:Mason`
+      ensure_installed = {
+        "lua-language-server",
+        "stylua",
+        "debugpy",
+        "tree-sitter-cli",
+      },
+    },
   },
 }
