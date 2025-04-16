@@ -9,6 +9,11 @@ local options = {
     smartindent = true,
 
     clipboard = "unnamedplus",
+
+    foldenable = true,
+    foldcolumn = "1",
+    foldlevel = 99,
+    foldlevelstart = 99,
 }
 
 for key, value in pairs(options) do
