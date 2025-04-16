@@ -1,5 +1,4 @@
 -- this is for formatting code
-
 return {
 	"stevearc/conform.nvim",
 	event = { "BufWritePre" },
