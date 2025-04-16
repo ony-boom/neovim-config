@@ -13,6 +13,10 @@ return {
     notifier = {},
   },
 
+  dependencies = {
+    { "echasnovski/mini.icons", version = false },
+  },
+
   keys = {
     {
       "<leader>ff",
