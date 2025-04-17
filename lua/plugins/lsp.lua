@@ -1,70 +1,29 @@
 local keymaps = require "config.keymaps"
 
 local function on_attach(client, bufnr)
-  local mappings = {
-    {
-      "<leader>la",
-      vim.lsp.buf.code_action,
-      desc = "Code Action",
-      mode = { "n", "v" },
-      has = "textDocument/codeAction",
-    },
-    {
-      "<leader>lr",
-      vim.lsp.buf.rename,
-      desc = "Rename",
-      has = "textDocument/rename",
-    },
-    { "K", vim.lsp.buf.hover, desc = "Hover", has = "textDocument/hover" },
-    {
-      "gd",
-      function() Snacks.picker.lsp_definitions() end,
-      desc = "Definition",
-      has = "textDocument/definition",
-    },
-    {
-      "gD",
-      function() Snacks.picker.lsp_declarations() end,
-      desc = "Definition",
-      has = "textDocument/declaration",
-    },
-    {
-      "gr",
-      function() Snacks.picker.lsp_references() end,
-      desc = "References",
-      has = "textDocument/references",
-    },
-    {
-      "gI",
-      function() Snacks.picker.lsp_references() end,
-      desc = "Go to implementations",
-      has = "extDocument/implementation",
-    },
-    {
-      "gy",
-      function() Snacks.picker.lsp_type_definitions() end,
-      desc = "Go to t[y]pe definitions",
-      has = "textDocument/typeDefinition",
-    },
-  }
-
-  for _, map in ipairs(mappings) do
-    if not map.has or client.supports_method(map.has) then
-      local modes = type(map.mode) == "table" and map.mode or { map.mode or "n" }
-      for _, mode in ipairs(modes) do
-        keymaps.map(mode, map[1], map[2], {
-          buffer = bufnr,
-          desc = map.desc,
-          silent = map.silent ~= false,
-        })
-      end
+  local picker = Snacks.picker
+  local map = function(mode, lhs, rhs, desc, method)
+    if not method or client.supports_method(method) then
+      keymaps.map(mode, lhs, rhs, { buffer = bufnr, desc = desc, silent = true })
     end
   end
+
+  map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, "Code Action", "textDocument/codeAction")
+  map("n", "<leader>lr", vim.lsp.buf.rename, "Rename", "textDocument/rename")
+  map("n", "K", vim.lsp.buf.hover, "Hover", "textDocument/hover")
+  map("n", "gd", picker.lsp_definitions, "Definition", "textDocument/definition")
+  map("n", "gD", picker.lsp_declarations, "Declaration", "textDocument/declaration")
+  map("n", "gr", picker.lsp_references, "References", "textDocument/references")
+  map("n", "gI", picker.lsp_references, "Go to implementations", "textDocument/implementation")
+  map("n", "gy", picker.lsp_type_definitions, "Go to t[y]pe definitions", "textDocument/typeDefinition")
 end
+
+local extra_capabilities = vim.lsp.protocol.make_client_capabilities()
+extra_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 return {
   "neovim/nvim-lspconfig",
-  dependencies = { "saghen/blink.cmp" },
+  dependencies = { "saghen/blink.cmp", "b0o/schemastore.nvim" },
 
   opts = {
     servers = {
@@ -72,6 +31,21 @@ return {
       nil_ls = {},
       ts_ls = {},
       rust_analyzer = {},
+
+      jsonls = function()
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+        return {
+          capabilities = capabilities,
+          settings = {
+            json = {
+              schemas = require("schemastore").json.schemas(),
+              validate = { enable = true },
+            },
+          },
+        }
+      end,
     },
   },
 
@@ -79,11 +53,13 @@ return {
     local lspconfig = require "lspconfig"
     local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-    for server, server_opts in pairs(opts.servers) do
-      lspconfig[server].setup(vim.tbl_deep_extend("force", {
+    for name, server_opts in pairs(opts.servers) do
+      local config = type(server_opts) == "function" and server_opts() or server_opts
+
+      lspconfig[name].setup(vim.tbl_deep_extend("force", {
         capabilities = capabilities,
         on_attach = on_attach,
-      }, server_opts))
+      }, config))
     end
 
     keymaps.map("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Line diagnostic" })

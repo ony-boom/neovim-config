@@ -8,10 +8,19 @@ return {
     words = { enabled = true },
     picker = { enabled = true },
     scope = { enabled = true },
-    scroll = { enabled = true },
     notifier = { enabled = true },
     quickfile = { enabled = true },
-    statuscolumn = { enabled = true },
+    statuscolumn = {
+      enabled = true,
+      folds = {
+        open = true,
+        git_hl = true,
+      },
+      git = {
+        patterns = { "GitSign", "MiniDiffSign" },
+      },
+      refresh = 50,
+    },
     explorer = { enabled = true, replace_netrw = true },
   },
 

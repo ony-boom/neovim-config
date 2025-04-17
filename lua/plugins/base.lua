@@ -1,10 +1,12 @@
+--- @type LazySpec
 return {
   {
     "folke/lazydev.nvim",
     ft = "lua",
     opts = {
       library = {
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        "lazy.nvim",
+        "luvit-meta/library", -- see below
       },
     },
   },
@@ -24,5 +26,9 @@ return {
         provider_selector = function() return { "treesitter", "indent" } end,
       }
     end,
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function() require("gitsigns").setup() end,
   },
 }
