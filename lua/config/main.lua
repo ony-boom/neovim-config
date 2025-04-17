@@ -9,6 +9,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.diagnostic.config {
+  virtual_text = false,
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = "󰅚 ",
