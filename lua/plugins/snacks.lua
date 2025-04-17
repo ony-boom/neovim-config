@@ -1,16 +1,18 @@
----@diagnostic disable: undefined-global
-
 return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
 
   opts = {
-    explorer = {
-      replace_netrw = true,
-    },
-    statuscolumn = {},
-    notifier = {},
+    input = { enabled = true },
+    words = { enabled = true },
+    picker = { enabled = true },
+    scope = { enabled = true },
+    scroll = { enabled = true },
+    notifier = { enabled = true },
+    quickfile = { enabled = true },
+    statuscolumn = { enabled = true },
+    explorer = { enabled = true, replace_netrw = true },
   },
 
   dependencies = {
@@ -24,7 +26,7 @@ return {
       desc = "Smart Find Files",
     },
     {
-      "<leader>b",
+      "<leader>fb",
       function() Snacks.picker.buffers() end,
       desc = "Buffers",
     },
@@ -47,6 +49,11 @@ return {
       "<leader>e",
       function() Snacks.explorer() end,
       desc = "File Explorer",
+    },
+    {
+      "<leader>dl",
+      function() Snacks.picker.diagnostics() end,
+      desc = "Diagnostics list",
     },
   },
 }

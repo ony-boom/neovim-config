@@ -9,8 +9,43 @@ local function on_attach(client, bufnr)
       mode = { "n", "v" },
       has = "textDocument/codeAction",
     },
+    {
+      "<leader>lr",
+      vim.lsp.buf.rename,
+      desc = "Rename",
+      has = "textDocument/rename",
+    },
     { "K", vim.lsp.buf.hover, desc = "Hover", has = "textDocument/hover" },
-    { "gd", vim.lsp.buf.definition, desc = "Definition", has = "textDocument/definition" },
+    {
+      "gd",
+      function() Snacks.picker.lsp_definitions() end,
+      desc = "Definition",
+      has = "textDocument/definition",
+    },
+    {
+      "gD",
+      function() Snacks.picker.lsp_declarations() end,
+      desc = "Definition",
+      has = "textDocument/declaration",
+    },
+    {
+      "gr",
+      function() Snacks.picker.lsp_references() end,
+      desc = "References",
+      has = "textDocument/references",
+    },
+    {
+      "gI",
+      function() Snacks.picker.lsp_references() end,
+      desc = "Go to implementations",
+      has = "extDocument/implementation",
+    },
+    {
+      "gy",
+      function() Snacks.picker.lsp_type_definitions() end,
+      desc = "Go to t[y]pe definitions",
+      has = "textDocument/typeDefinition",
+    },
   }
 
   for _, map in ipairs(mappings) do
