@@ -1,3 +1,4 @@
+local keymaps = require "config.keymaps"
 local on_attach = require "plugins.lsp.on_attach"
 local servers = require "plugins.lsp.servers"
 
@@ -8,15 +9,6 @@ return {
 
   opts = {
     servers = servers,
-  },
-
-  keys = {
-    {
-      "n",
-      "<leader>ld",
-      function() vim.diagnostic.open_float { focusable = false } end,
-      desc = "Line diagnostic",
-    },
   },
 
   config = function(_, opts)
@@ -36,5 +28,7 @@ return {
         capabilities = capabilities,
       }, config))
     end
+
+    keymaps.map("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Line diagnostic" })
   end,
 }
