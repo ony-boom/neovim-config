@@ -29,9 +29,22 @@ return {
     servers = {
       lua_ls = {},
       nil_ls = {},
-      ts_ls = {},
+      ts_ls = function()
+        return {
+          root_dir = require("lspconfig").util.root_pattern { "package.json", "tsconfig.json" },
+          single_file_support = false,
+          settings = {},
+        }
+      end,
       rust_analyzer = {},
       gopls = {},
+      denols = function()
+        return {
+          root_dir = require("lspconfig").util.root_pattern { "deno.json", "deno.jsonc" },
+          single_file_support = false,
+          settings = {},
+        }
+      end,
 
       jsonls = function()
         local capabilities = vim.lsp.protocol.make_client_capabilities()
