@@ -20,6 +20,7 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			nix = { "alejandra" },
+      go = { "gofumpt", "goimports" },
 			javascript = { "prettierd", "prettier", stop_after_first = true },
 		},
 		default_format_opts = {
