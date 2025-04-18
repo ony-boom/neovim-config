@@ -31,6 +31,7 @@ return {
       nil_ls = {},
       ts_ls = {},
       rust_analyzer = {},
+      gopls = {},
 
       jsonls = function()
         local capabilities = vim.lsp.protocol.make_client_capabilities()
