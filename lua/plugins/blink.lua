@@ -27,6 +27,9 @@ return {
 
     sources = {
       default = { "lazydev", "lsp", "path", "snippets", "buffer", "copilot" },
+      per_filetype = {
+        codecompanion = { "codecompanion" },
+      },
       providers = {
         lazydev = {
           name = "LazyDev",
