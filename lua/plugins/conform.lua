@@ -22,6 +22,7 @@ return {
 			nix = { "alejandra" },
       go = { "gofumpt", "goimports" },
 			javascript = { "prettierd", "prettier", stop_after_first = true },
+      rust = { "rustfmt" },
 		},
 		default_format_opts = {
 			lsp_format = "fallback",
